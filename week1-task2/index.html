@@ -18,6 +18,17 @@ function readform(){
         }
     }
 }
+
+function getDate(){
+    var day = new Date();
+    var hour = day.getHours();
+    var minute = day.getMinutes();
+    var second = day.getSeconds();
+    var time = hour + ":" + minute + ":" + second;
+    setTimeout("getDate()",1000);
+    document.getElementById("showtime").innerHTML = time;
+}
+getDate()
 </script>
 
 <form>
@@ -32,5 +43,6 @@ Select Timezone: <br>
 </form> 
 <br>
 <div id="result"> </div>
+<div id="showtime"> </div>
 </body>
 </html>

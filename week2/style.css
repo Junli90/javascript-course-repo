@@ -20,3 +20,9 @@ body{
     justify-content: center;
 		margin-left: 50px;
 }
+
+.timezone{
+    background: rgb(11, 148, 7);
+    border: 20px solid rgb(214, 8, 8);
+
+}

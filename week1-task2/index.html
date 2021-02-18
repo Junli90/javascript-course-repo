@@ -9,19 +9,33 @@
 <body>
 
 <script type="text/javascript">
+var offset = 0; 
+
 function readform(){
     var radioButtons = document.getElementsByName("tz");
     for (var i = 0; i < radioButtons.length; i++){
         if (radioButtons[i].checked == true){
             var output = radioButtons[i].value;
             document.getElementById("result").innerHTML = output;
+            switch(output){
+            case "cst":
+                offset = 2;
+                break;
+            case "est":
+                offset = 3;
+                break;
+            default:
+                offset = 0;
+                break
+            }
         }
     }
+    return offset
 }
 
 function getDate(){
     var day = new Date();
-    var hour = day.getHours();
+    var hour = day.getHours() + readform();
     var minute = day.getMinutes();
     var second = day.getSeconds();
     var time = hour + ":" + minute + ":" + second;

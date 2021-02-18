@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css"> </link>
+</head>
+<body>
+
+<script type="text/javascript">
+var offset = 0; 
+
+function readform(){
+    var radioButtons = document.getElementsByName("tz");
+    for (var i = 0; i < radioButtons.length; i++){
+        if (radioButtons[i].checked == true){
+            var output = radioButtons[i].value;
+            document.getElementById("result").innerHTML = output;
+            switch(output){
+            case "cst":
+                offset = 2;
+                break;
+            case "est":
+                offset = 3;
+                break;
+            default:
+                offset = 0;
+                break
+            }
+        }
+    }
+    return offset
+}
+
+function getDate(){
+    var day = new Date();
+    var hour = day.getHours() + readform();
+    var minute = day.getMinutes();
+    var second = day.getSeconds();
+    var time = hour + ":" + minute + ":" + second;
+    setTimeout("getDate()",1000);
+    document.getElementById("showtime").innerHTML = time;
+}
+getDate()
+</script>
+
+<form>
+Select Timezone: <br>
+<br>
+<input type="radio" name="tz" value="est"> Eastern Standard Time <br>
+<input type="radio" name="tz" value="cst"> Central Standard Time <br>
+<input type="radio" name="tz" value="mst"> Mountain Standard Time <br>
+<input type="radio" name="tz" value="pst"> Pacific Standard Time <br>    
+<br>
+<button type="button" value="Submit" onclick="readform()"> Submit </button>
+</form> 
+<br>
+<div id="result"> </div>
+<div id="showtime"> </div>
+</body>
+</html>
